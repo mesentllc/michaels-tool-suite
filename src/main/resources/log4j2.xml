@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration packages="com.fedex.framework.logging.log4j2">
+	<Properties>
+		<Property name="VARLOG" />
+	</Properties>
+
+	<Appenders>
+		<Console name="consoleAppender">
+			<FedExPatternLayout />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="DEBUG">
+			<AppenderRef ref="consoleAppender"/>
+		</Root>
+	</Loggers>
+</Configuration>

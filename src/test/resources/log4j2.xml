@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration packages="com.fedex.framework.logging.log4j2">
+	<Appenders>
+		<Console name="consoleAppender">
+			<FedExPatternLayout />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="WARN">
+			<AppenderRef ref="consoleAppender"/>
+		</Root>
+	</Loggers>
+</Configuration>

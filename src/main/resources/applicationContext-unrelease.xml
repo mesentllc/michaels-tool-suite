@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="adminService" class="com.fedex.smartpost.mts.services.AdminServiceImpl">
+		<property name="ratingAdminWebService" ref="ratingAdminWebServiceTemplate" />
+	</bean>
+
+	<bean id="ratingAdminMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<list>
+				<value>com.fedex.smartpost.rating.types.ManualUnreleaseRequest</value>
+				<value>com.fedex.smartpost.rating.types.ManualUnreleaseResponse</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+
+	<bean id="ratingAdminWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<constructor-arg ref="messageFactory" />
+		<property name="marshaller" ref="ratingAdminMarshaller" />
+		<property name="unmarshaller" ref="ratingAdminMarshaller" />
+		<property name="defaultUri" value="http://pje03534.ground.fedex.com:14140/fxsp-rating-file-transfer-ws/ratingFileTransferAdmin" />
+	</bean>
+</beans>

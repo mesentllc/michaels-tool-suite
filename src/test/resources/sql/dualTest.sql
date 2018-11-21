@@ -1,0 +1,1 @@
+select 5 as payment from dual
