@@ -205,6 +205,17 @@
 			<artifactId>fxsp-postal-types</artifactId>
 			<version>0.1.3</version>
 		</dependency>
+        <dependency>
+            <groupId>com.sun.xml.messaging.saaj</groupId>
+            <artifactId>saaj-impl</artifactId>
+            <version>1.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 		<!-- DB Dependencies -->
 		<dependency>
 			<groupId>oracle.sql</groupId>
