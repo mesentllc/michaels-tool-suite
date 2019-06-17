@@ -26,7 +26,7 @@ public class RodesGatewayImpl extends NamedParameterJdbcTemplate implements Rode
 			maxPointer = Math.min(1000, packageIds.size() - curPointer);
 			MapSqlParameterSource parameters = new MapSqlParameterSource();
 			parameters.addValue("packageIds", packageIds.subList(curPointer, curPointer + maxPointer));
-			eventSeqList = queryForList(sql, parameters, Long.class);
+			eventSeqList.addAll(queryForList(sql, parameters, Long.class));
 			curPointer += maxPointer;
 		}
 		return eventSeqList;
