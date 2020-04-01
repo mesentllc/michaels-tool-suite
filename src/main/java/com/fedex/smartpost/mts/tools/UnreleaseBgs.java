@@ -19,6 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public final class UnreleaseBgs {
 	private static final Log logger = LogFactory.getLog(UnreleaseBgs.class);
+//	private static final String urlRoot = "http://sje00848.ground.fedex.com:14130/rodes-scheduler/serviceInitiator/resetBillingGroup?bg_seq=";
 	private static final String urlRoot = "http://pje03534.ground.fedex.com:14150/rodes-pkg-aggregator/service/resetBillingGroup?bg_seq=";
 	private AdminService adminService;
 
@@ -29,17 +30,17 @@ public final class UnreleaseBgs {
 
 	private static void resetBgStatus(String filename) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(filename));
-			while (br.ready()) {
-				String urlString = urlRoot + br.readLine().trim();
-				logger.info("Calling " + urlString);
-				URL url = new URL(urlString);
-				URLConnection urlConnection = url.openConnection();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-				reader.readLine();
-				reader.close();
+			try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+				while (br.ready()) {
+					String urlString = urlRoot + br.readLine().trim();
+					logger.info("Calling " + urlString);
+					URL url = new URL(urlString);
+					URLConnection urlConnection = url.openConnection();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+					reader.readLine();
+					reader.close();
+				}
 			}
-			br.close();
 		}
 		catch (Exception e) {
 			logger.error("Error: ", e);
@@ -53,12 +54,12 @@ public final class UnreleaseBgs {
 
 		try {
 			logger.info("Reading " + filename + " for BGs to release.");
-			BufferedReader br = new BufferedReader(new FileReader(filename));
-			while (br.ready()) {
-				messageQueue.add(br.readLine().trim());
-				totalCount++;
+			try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+				while (br.ready()) {
+					messageQueue.add(br.readLine().trim());
+					totalCount++;
+				}
 			}
-			br.close();
 			logger.info(totalCount + " records read.");
 			for (int ptr = 0; ptr < threadCount; ptr++) {
 				UnreleaseThread unreleaseThread = new UnreleaseThread(adminService, ptr, messageQueue);

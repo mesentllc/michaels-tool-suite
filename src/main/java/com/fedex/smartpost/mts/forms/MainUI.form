@@ -110,10 +110,11 @@
     <Component class="javax.swing.JComboBox" name="cbxTool">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="4">
             <StringItem index="0" value="Reset Events"/>
             <StringItem index="1" value="Unrelease BGs"/>
             <StringItem index="2" value="Scan Dashboard"/>
+            <StringItem index="3" value="Set Autogrouping"/>
           </StringArray>
         </Property>
       </Properties>

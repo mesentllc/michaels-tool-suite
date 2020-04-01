@@ -52,6 +52,15 @@ public class TestBench {
 		log.info(String.format("Total elapsed time: %s", prettyTIme(total)));
 	}
 
+	@Test
+	public void testTimestampRetrieval() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("testApplicationContext-db.xml");
+		TestDatabaseConnection tdc = (TestDatabaseConnection)context.getBean("testDatabaseConnection");
+		tdc.logEventDt(21993556802L);
+		tdc.logEventDt(21993556803L);
+		tdc.logEventDt(21993556804L);
+	}
+
 	private String prettyTIme(double timing) {
 		int hours;
 		int minutes;

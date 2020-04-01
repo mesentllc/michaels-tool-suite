@@ -19,6 +19,7 @@ public class MainUI extends JFrame {
 	private ResetEventsUI resetEventsUI;
 	private UnreleaseUI unreleaseUI;
 	private CredentialUI credentialUI;
+	private SetAutogroupingUI setAutogroupingUI;
 
 	/**
 	 * Creates new form MainUI
@@ -70,7 +71,7 @@ public class MainUI extends JFrame {
 
         lblTool.setText("Tool:");
 
-        cbxTool.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reset Events", "Unrelease BGs", "Scan Dashboard" }));
+        cbxTool.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reset Events", "Unrelease BGs", "Scan Dashboard", "Set Autogrouping" }));
 
         btnOpen.setText("OpenTool");
         btnOpen.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +163,13 @@ public class MainUI extends JFrame {
 					btnOpen.setEnabled(true);
 					cbxTool.setEnabled(true);
 				}
+			case 3:
+				if (setAutogroupingUI == null) {
+					setAutogroupingUI = new SetAutogroupingUI(this);
+				}
+				setAutogroupingUI.setVisible(true);
+				setVisible(false);
+				break;
 		}
     }//GEN-LAST:event_btnOpenActionPerformed
 

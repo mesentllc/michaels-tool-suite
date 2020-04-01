@@ -23,6 +23,9 @@
 		<constructor-arg ref="messageFactory" />
 		<property name="marshaller" ref="ratingAdminMarshaller" />
 		<property name="unmarshaller" ref="ratingAdminMarshaller" />
-		<property name="defaultUri" value="http://pje03534.ground.fedex.com:14140/fxsp-rating-file-transfer-ws/ratingFileTransferAdmin" />
+<!--
+        <property name="defaultUri" value="http://sje00848.ground.fedex.com:14140/fxsp-rating-file-transfer-ws/ratingFileTransferAdmin" />
+-->
+        <property name="defaultUri" value="http://pje03534.ground.fedex.com:14140/fxsp-rating-file-transfer-ws/ratingFileTransferAdmin" />
 	</bean>
 </beans>
